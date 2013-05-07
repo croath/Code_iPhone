@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DouTabBarController.h"
+#define APP_DELEGATE  ((AppDelegate *)[UIApplication sharedApplication].delegate)
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, DouTabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) DouTabBarController *tabBarController;
 
 @end

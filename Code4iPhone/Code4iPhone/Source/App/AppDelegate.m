@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MenuItemButton.h"
 
 @implementation AppDelegate
 
@@ -15,6 +16,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+  [self loadHomePage];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -44,6 +46,37 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)loadHomePage
+{
+  self.tabBarController = [[DouTabBarController alloc] init];
+  self.tabBarController.view.backgroundColor = [UIColor blackColor];
+  self.tabBarController.delegate = self;
+  MenuItemButton *showingButton =
+  [[MenuItemButton alloc] initWithTitle:@"1"];
+  MenuItemButton *cinemaButton =
+  [[MenuItemButton alloc] initWithTitle:@"2"];
+  MenuItemButton *movieListButton =
+  [[MenuItemButton alloc] initWithTitle:@"3"];
+  [UIGloble drawLineInView:self.tabBarController.tabBar
+                     frame:CGRectMake(0, 0, self.tabBarController.tabBar.frame.size.width, 1)
+           backgroundColor:[UIColor grayColor]
+                imageNamed:nil];
+  
+  [self.tabBarController.tabBar setItems:[NSArray arrayWithObjects:
+                                          showingButton,
+                                          cinemaButton,
+                                          movieListButton,
+                                          nil]];
+  UIViewController *c = [[UIViewController alloc] init];
+  c.view.backgroundColor = [UIColor redColor];
+  YNavigationController *iSeeNav = [[YNavigationController alloc] initWithRootViewController:c];
+  [self.tabBarController setViewControllers:[NSArray arrayWithObjects:
+                                             iSeeNav,
+                                             nil]];
+  self.window.backgroundColor = [UIColor blackColor];
+  [self.window insertSubview:self.tabBarController.view atIndex:0];
 }
 
 @end

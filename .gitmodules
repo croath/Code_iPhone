@@ -1,0 +1,3 @@
+[submodule "Code4iPhone/Code4iPhone/Dependency/SDWebImage"]
+	path = Code4iPhone/Code4iPhone/Dependency/SDWebImage
+	url = https://github.com/croath/SDWebImage.git
