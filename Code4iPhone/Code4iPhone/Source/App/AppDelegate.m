@@ -70,7 +70,7 @@
                                           movieListButton,
                                           nil]];
   UIViewController *c = [[UIViewController alloc] init];
-  c.view.backgroundColor = [UIColor redColor];
+  c.view.backgroundColor = [UIColor blackColor];
   YNavigationController *iSeeNav = [[YNavigationController alloc] initWithRootViewController:c];
   [self.tabBarController setViewControllers:[NSArray arrayWithObjects:
                                              iSeeNav,
