@@ -17,7 +17,6 @@
 //@property (nonatomic, assign, readwrite) BOOL isOldViewController;
 @property (nonatomic, unsafe_unretained, readwrite) BOOL needTabbar; //whether to show tab bar when the view controller apear.
 @property (nonatomic, unsafe_unretained, readwrite) BOOL customBackButton;
-@property (nonatomic, unsafe_unretained, readwrite) BOOL needSearchBar;  //whether to show search bar when the view controller apear.
 @property (nonatomic, strong, readwrite) AFHTTPRequestOperation * networkOperation;
 - (void)popToParent;
 - (void)backUp:(id)sender;

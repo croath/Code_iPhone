@@ -17,7 +17,6 @@
   if (self) {
     //self.isOldViewController = NO;
     self.needTabbar = YES;
-    self.needSearchBar = NO;
     self.customBackButton = NO;
   }
   return self;

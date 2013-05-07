@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MenuItemButton.h"
+#import "BaseViewController.h"
 
 @implementation AppDelegate
 
@@ -53,24 +54,26 @@
   self.tabBarController = [[DouTabBarController alloc] init];
   self.tabBarController.view.backgroundColor = [UIColor blackColor];
   self.tabBarController.delegate = self;
-  MenuItemButton *showingButton =
-  [[MenuItemButton alloc] initWithTitle:@"1"];
-  MenuItemButton *cinemaButton =
-  [[MenuItemButton alloc] initWithTitle:@"2"];
-  MenuItemButton *movieListButton =
-  [[MenuItemButton alloc] initWithTitle:@"3"];
+  MenuItemButton *feedButton = [[MenuItemButton alloc] initWithTitle:@"Feed"];
+  MenuItemButton *notificationButton = [[MenuItemButton alloc] initWithTitle:@"Notice"];
+  MenuItemButton *prButton = [[MenuItemButton alloc] initWithTitle:@"PR"];
+  MenuItemButton *issueButton = [[MenuItemButton alloc] initWithTitle:@"Issue"];
+  MenuItemButton *mineButton = [[MenuItemButton alloc] initWithTitle:@"Mine"];
   [UIGloble drawLineInView:self.tabBarController.tabBar
                      frame:CGRectMake(0, 0, self.tabBarController.tabBar.frame.size.width, 1)
            backgroundColor:[UIColor grayColor]
                 imageNamed:nil];
   
   [self.tabBarController.tabBar setItems:[NSArray arrayWithObjects:
-                                          showingButton,
-                                          cinemaButton,
-                                          movieListButton,
+                                          feedButton,
+                                          notificationButton,
+                                          prButton,
+                                          issueButton,
+                                          mineButton,
                                           nil]];
-  UIViewController *c = [[UIViewController alloc] init];
-  c.view.backgroundColor = [UIColor blackColor];
+  BaseViewController *c = [[BaseViewController alloc] init];
+  [[c navigationController] setNavigationBarHidden:YES animated:NO];
+  c.view.backgroundColor = [UIColor whiteColor];
   YNavigationController *iSeeNav = [[YNavigationController alloc] initWithRootViewController:c];
   [self.tabBarController setViewControllers:[NSArray arrayWithObjects:
                                              iSeeNav,

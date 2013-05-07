@@ -2,13 +2,13 @@
 
 #import "MenuItemButton.h"
 
-#define ACTIVATED_BUTTON_IMAGE [UIImage imageNamed:@"activated_btn"]
-#define STRETCHABLE_ACTIVATED_BUTTON_IMAGE [ACTIVATED_BUTTON_IMAGE stretchableImageWithLeftCapWidth:4 topCapHeight:44];
-
-#define DEACTIVATED_BUTTON_IMAGE [UIImage imageNamed:@"deactivated_btn"]
-#define STRETCHABLE_DEACTIVATED_BUTTON_IMAGE [DEACTIVATED_BUTTON_IMAGE stretchableImageWithLeftCapWidth:4 topCapHeight:44];
-
 #define SELECTED_TITLE_COLOR [UIColor colorWithRed:0 green:(1.0f * 0xbf) / 255.0f blue:(1.0f*0xf0)/255.0f alpha:.8]
+
+@interface MenuItemButton(){
+  UIView *_upLine;
+}
+
+@end
 
 @implementation MenuItemButton
 
@@ -22,13 +22,7 @@
     [self setBackgroundColor:[UIColor clearColor]];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self setTitleColor:SELECTED_TITLE_COLOR forState:UIControlStateSelected];
-    //    [self setTitleColor:SELECTED_TITLE_COLOR forState:UIControlStateHighlighted];
     
-    UIImage * stretchableImage = STRETCHABLE_DEACTIVATED_BUTTON_IMAGE;
-    [self setBackgroundImage:stretchableImage forState:UIControlStateNormal];
-    
-    stretchableImage = STRETCHABLE_ACTIVATED_BUTTON_IMAGE;
-    [self setBackgroundImage:stretchableImage forState:UIControlStateSelected];
     self.adjustsImageWhenDisabled = YES;
     self.adjustsImageWhenHighlighted = NO;
   }
@@ -37,22 +31,34 @@
 
 - (void)setSelected:(BOOL)selected
 {
-  
+  [super setSelected:selected];
+  if (!_upLine) {
+    CGRect frame = CGRectZero;
+//    frame.origin.x = self.bounds.size.width / 3.f;
+    frame.origin.x = 0.f;
+    frame.origin.y = 0.f;
+//    frame.size.width = frame.origin.x;
+    frame.size.width = self.bounds.size.width;
+    frame.size.height = self.bounds.size.height / 20.f;
+    _upLine = [[UIView alloc] initWithFrame:frame];
+    [_upLine setBackgroundColor:[UIColor colorWithRed:96.f/255.f
+                                                green:182.f/255.f
+                                                 blue:174.f
+                                                alpha:1.f]];
+    [_upLine setHidden:YES];
+    [self addSubview:_upLine];
+  }
   
   UIColor * color = nil;
-  UIImage * stretchableImage = nil;
   if (YES == selected) {
     color = SELECTED_TITLE_COLOR;
-    stretchableImage = STRETCHABLE_ACTIVATED_BUTTON_IMAGE;
-    [self setBackgroundImage:stretchableImage forState:UIControlStateNormal];
+    [_upLine setHidden:NO];
   }
   else {
     color = [UIColor whiteColor];
-    stretchableImage = STRETCHABLE_DEACTIVATED_BUTTON_IMAGE;
-    
+    [_upLine setHidden:YES];
   }
   [self setTitleColor:color forState:UIControlStateNormal];
-  [self setBackgroundImage:stretchableImage forState:UIControlStateNormal];
   
   [super setSelected:selected];
 }
